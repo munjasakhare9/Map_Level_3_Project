@@ -2,6 +2,8 @@ package com.demo;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -84,8 +86,17 @@ public class App {
 		Student s2 = new Student(12, "Ritesh", 95.50);
 
 		students.put(s2, details2);
+		
+		//Set<Student> studentKey = students.keySet();
+		List<Student> studentKey=new ArrayList<>(students.keySet());
+		Collections.sort(studentKey, new Comparator<Student>() {
 
-		Set<Student> studentKey = students.keySet();
+			@Override
+			public int compare(Student s1, Student s2) {
+				return s2.name.compareTo(s1.name);
+			}
+			
+		});
 		for (Student s : studentKey) {
 			System.out.println("Id: " + s.id);
 			System.out.println("Name: " + s.name);
